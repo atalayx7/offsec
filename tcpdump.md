@@ -23,4 +23,5 @@ tcpdump -i eth0 net 192.168.1.0/24 and portrange 135-139
 
 tcpdump -i eth0 host $ip and port 514 -c 2
 
+tcpdump -SX -i eth0 tcp port 389 #capture the ldap details
 ```
